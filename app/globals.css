@@ -233,4 +233,107 @@ a {
     @apply grid gap-6 rounded-lg border border-white/10 bg-white/[0.064] p-6 backdrop-blur-xl md:grid-cols-[1fr_auto] md:items-center;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 28px 80px rgba(0,0,0,0.28);
   }
+
+  .brief-hero {
+    @apply border-b border-white/10 px-5 py-16 sm:px-6 sm:py-24 lg:px-8;
+  }
+
+  .brief-label {
+    @apply mb-3 text-xs font-black uppercase text-rose-300;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-copy {
+    @apply mt-6 max-w-3xl text-base leading-8 text-stone-300 sm:text-lg;
+  }
+
+  .brief-layout {
+    @apply mx-auto grid max-w-6xl gap-6 px-5 py-14 sm:px-6 lg:grid-cols-[320px_1fr] lg:px-8;
+  }
+
+  .brief-index {
+    @apply border-l-4 border-rose-300 bg-white/[0.045] p-5;
+    align-self: start;
+  }
+
+  .brief-index span {
+    @apply text-xs font-black uppercase text-rose-300;
+    letter-spacing: 0.16em;
+  }
+
+  .brief-index strong {
+    @apply mt-4 block text-3xl leading-tight text-white;
+  }
+
+  .brief-index p {
+    @apply mt-4 text-sm leading-7 text-stone-300;
+  }
+
+  .brief-list {
+    @apply grid gap-4;
+  }
+
+  .brief-list article {
+    @apply grid gap-5 border-b border-white/10 pb-6 sm:grid-cols-[80px_1fr];
+  }
+
+  .brief-list article > span {
+    @apply text-6xl leading-none text-aurum;
+    font-family: Georgia, "Iowan Old Style", serif;
+  }
+
+  .brief-list h2,
+  .faq-columns h3 {
+    @apply text-2xl font-semibold text-white;
+  }
+
+  .brief-list p,
+  .faq-columns p {
+    @apply mt-3 text-sm leading-7 text-stone-300;
+  }
+
+  .checklist-zone,
+  .faq-preview {
+    @apply px-5 py-14 sm:px-6 lg:px-8;
+  }
+
+  .checklist {
+    @apply mt-8 grid gap-3;
+  }
+
+  .checklist div {
+    @apply flex gap-3 rounded-lg border border-white/10 bg-white/[0.045] p-4;
+  }
+
+  .checklist svg {
+    @apply shrink-0 text-teal-300;
+  }
+
+  .checklist p {
+    @apply text-sm leading-7 text-stone-300;
+  }
+
+  .link-ledger {
+    @apply rounded-lg border border-white/10 bg-white/[0.06] p-5;
+  }
+
+  .link-ledger a {
+    @apply flex items-center justify-between gap-4 border-b border-white/10 py-4 last:border-b-0;
+  }
+
+  .link-ledger strong {
+    @apply block text-lg text-white;
+  }
+
+  .link-ledger small {
+    @apply mt-2 block text-sm leading-6 text-stone-300;
+  }
+
+  .faq-columns {
+    @apply mt-8 grid gap-4 md:grid-cols-3;
+  }
+
+  .faq-columns article {
+    @apply rounded-lg border border-white/10 bg-white/[0.045] p-5;
+  }
 }
