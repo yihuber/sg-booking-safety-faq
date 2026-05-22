@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --ink: #060607;
+  --ash: #11110f;
+  --aurum: #e6c872;
+  --electric: #5eead4;
+  --violet: #8aa4ff;
+  --line: rgba(255, 255, 255, 0.12);
+  --glass: rgba(255, 255, 255, 0.058);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Avenir Next", Avenir, "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  background:
+    linear-gradient(115deg, color-mix(in srgb, var(--electric) 12%, transparent), transparent 28%),
+    linear-gradient(250deg, color-mix(in srgb, var(--aurum) 10%, transparent), transparent 34%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 92px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.022) 0 1px, transparent 1px 92px),
+    var(--ink);
+  color: #e5e7eb;
+}
+
+body::before {
+  pointer-events: none;
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(140deg, transparent 0 47%, rgba(246, 207, 122, 0.14) 47.15% 47.35%, transparent 47.5%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 6px);
+  mix-blend-mode: screen;
+  opacity: 0.3;
+}
+
+body::after {
+  pointer-events: none;
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: linear-gradient(to bottom, black, transparent 74%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--aurum) 40%, transparent);
+  color: white;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-105%); opacity: 0; }
+  16% { opacity: 0.42; }
+  55% { opacity: 0.18; }
+  100% { transform: translateY(105%); opacity: 0; }
+}
+
+@keyframes meter {
+  0%, 100% { transform: scaleY(0.36); opacity: 0.55; }
+  45% { transform: scaleY(1); opacity: 1; }
+}
+
+@layer components {
+  .eyebrow {
+    @apply mb-3 text-xs font-bold uppercase text-[color:var(--aurum)];
+    font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif;
+    letter-spacing: 0.18em;
+  }
+
+  .display-title {
+    font-family: "Bodoni 72", Didot, "Iowan Old Style", Georgia, serif;
+    font-weight: 700;
+    line-height: 0.96;
+    letter-spacing: 0;
+  }
+
+  .section-title {
+    @apply max-w-3xl text-3xl font-semibold text-white sm:text-4xl;
+    font-family: "Bodoni 72", Didot, "Iowan Old Style", Georgia, serif;
+    line-height: 1.04;
+    letter-spacing: 0;
+  }
+
+  .mono-signal {
+    font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif;
+    letter-spacing: 0.14em;
+  }
+
+  .brand-mark {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border text-[color:var(--aurum)];
+    border-color: color-mix(in srgb, var(--aurum) 42%, transparent);
+    background: color-mix(in srgb, var(--aurum) 12%, transparent);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border px-5 py-3 text-sm font-bold text-black transition focus:outline-none focus:ring-2;
+    border-color: color-mix(in srgb, var(--aurum) 62%, transparent);
+    background: var(--aurum);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 18px 42px color-mix(in srgb, var(--aurum) 18%, transparent);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/[0.055] px-5 py-3 text-sm font-bold text-white transition focus:outline-none focus:ring-2;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--electric) 55%, transparent);
+    background: color-mix(in srgb, var(--electric) 11%, transparent);
+  }
+
+  .hero-scene {
+    min-height: min(760px, calc(100vh - 74px));
+    display: flex;
+    align-items: center;
+  }
+
+  .scanline {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--electric) 18%, transparent), transparent);
+    height: 44%;
+    animation: scan 7s ease-in-out infinite;
+  }
+
+  .signal-panel {
+    @apply relative overflow-hidden rounded-lg border border-white/15 bg-white/[0.055] p-5 backdrop-blur-xl;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 28px 80px rgba(0,0,0,0.32);
+  }
+
+  .signal-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--electric) 10%, transparent) 0 1px, transparent 1px 18px),
+      linear-gradient(135deg, rgba(255,255,255,0.11), transparent 40%);
+    opacity: 0.75;
+  }
+
+  .signal-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .signal-panel__header {
+    @apply flex items-center justify-between border-b border-white/10 pb-4 text-xs font-bold text-slate-400;
+    font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif;
+    letter-spacing: 0.16em;
+  }
+
+  .signal-meter {
+    @apply mt-8 flex h-28 items-end gap-3 rounded-lg border border-white/10 bg-black/25 p-5;
+  }
+
+  .signal-meter span {
+    flex: 1;
+    min-width: 0;
+    border-radius: 8px 8px 2px 2px;
+    background: linear-gradient(to top, var(--aurum), var(--electric));
+    transform-origin: bottom;
+    animation: meter 2.8s ease-in-out infinite;
+  }
+
+  .signal-meter span:nth-child(2) { animation-delay: 0.25s; }
+  .signal-meter span:nth-child(3) { animation-delay: 0.5s; }
+  .signal-meter span:nth-child(4) { animation-delay: 0.75s; }
+
+  .signal-row {
+    @apply flex items-center gap-4 rounded-lg border border-white/10 bg-black/20 p-4 transition;
+  }
+
+  .signal-row:hover {
+    border-color: color-mix(in srgb, var(--electric) 42%, transparent);
+    background: rgba(255,255,255,0.07);
+  }
+
+  .signal-index {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.06] text-xs font-bold text-[color:var(--aurum)];
+  }
+
+  .glass-card {
+    @apply rounded-lg border border-white/10 bg-white/[0.058] p-5 backdrop-blur-xl;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 18px 54px rgba(0,0,0,0.22);
+  }
+
+  .terminal-grid {
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.12), transparent 38%),
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--electric) 8%, transparent) 0 1px, transparent 1px 18px),
+      rgba(255,255,255,0.045);
+  }
+
+  .step-row {
+    @apply flex gap-4 rounded-lg border border-white/10 bg-white/[0.045] p-4;
+  }
+
+  .step-number {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-bold text-black;
+    background: var(--aurum);
+  }
+
+  .cta-band {
+    @apply grid gap-6 rounded-lg border border-white/10 bg-white/[0.064] p-6 backdrop-blur-xl md:grid-cols-[1fr_auto] md:items-center;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 28px 80px rgba(0,0,0,0.28);
+  }
+}
